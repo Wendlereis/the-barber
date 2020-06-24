@@ -3,7 +3,7 @@ class Appointment {
   provider: String;
   date: Date;
 
-  constructor(provider: String, date: Date) {
+  constructor({ provider, date }: Omit<Appointment, 'id'>) {
     this.id = new Date().getTime();
     this.provider = provider;
     this.date = date;
