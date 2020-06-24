@@ -8,6 +8,10 @@ class AppointmentsRepository {
     this.appointments = [];
   }
 
+  public list() {
+    return this.appointments;
+  }
+
   public create(provider: String, date: Date) {
     const appointment = new Appointment(provider, date);
 
