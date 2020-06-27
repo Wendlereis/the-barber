@@ -24,9 +24,7 @@ export default function session(
 
   try {
     const decoded = verify(token, process.env.JWT_TOKEN);
-
-    console.log({ decoded });
-
+    
     const { sub } = decoded as Token;
 
     request.user = {

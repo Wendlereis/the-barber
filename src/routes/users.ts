@@ -4,7 +4,9 @@ import multer from 'multer';
 import fileUploadConfig from '../config/fileUpload';
 
 import sessionMiddleware from '../middlewares/session';
+
 import CreateUserService from '../services/CreateUserService';
+import UpdateUserAvatarService from '../services/UpdateUserAvatarService';
 
 const router = Router();
 const fileUpload = multer(fileUploadConfig);
@@ -32,7 +34,20 @@ router.patch(
   sessionMiddleware,
   fileUpload.single('avatar'),
   async (request, response) => {
-    return response.json({ ok: true });
+    const { user, file } = request;
+
+    const updateUserAvatarService = new UpdateUserAvatarService();
+
+    try {
+      const updatedUser = await updateUserAvatarService.execute({
+        userId: user.id,
+        avatarFileName: file.filename,
+      });
+
+      return response.json(updatedUser);
+    } catch (error) {
+      response.status(400).json({ error: error.message });
+    }
   },
 );
 
