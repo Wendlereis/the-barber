@@ -18,7 +18,7 @@ router.get('/', async (_, response) => {
 });
 
 router.post('/', async (request, response) => {
-  const { provider, date } = request.body;
+  const { provider_id, date } = request.body;
 
   const createAppointmentsService = new CreateAppointmentService();
 
@@ -26,7 +26,7 @@ router.post('/', async (request, response) => {
 
   try {
     const appointment = await createAppointmentsService.execute({
-      provider,
+      provider_id,
       date: parsedDate,
     });
 
