@@ -17,7 +17,7 @@
   "scripts": {
     "build": "tsc",
     "typeorm": "ts-node-dev ./node_modules/typeorm/cli.js",
-    "start:server": "ts-node-dev --ignore node_modules src/server.ts"
+    "start:server": "ts-node-dev --inspect --ignore node_modules src/server.ts"
   },
   "devDependencies": {
     "@types/bcryptjs": "^2.4.2",
