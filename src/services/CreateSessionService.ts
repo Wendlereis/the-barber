@@ -23,7 +23,7 @@ class CreateSessionService {
       throw new AppError('Incorrect email or password', 401);
     }
 
-    const passwordMatched = compare(password, user.password);
+    const passwordMatched = await compare(password, user.password);
 
     if (!passwordMatched) {
       throw new AppError('Incorrect email or password', 401);
