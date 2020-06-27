@@ -3,7 +3,7 @@ import multer from 'multer';
 
 import fileUploadConfig from '../config/fileUpload';
 
-import sessionMiddleware from '../middlewares/session';
+import sessionMiddleware from '../middlewares/sessionMiddleware';
 
 import CreateUserService from '../services/CreateUserService';
 import UpdateUserAvatarService from '../services/UpdateUserAvatarService';

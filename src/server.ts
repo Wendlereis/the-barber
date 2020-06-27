@@ -6,7 +6,7 @@ import 'express-async-errors';
 import routes from './routes';
 
 import fileUploadConfig from './config/fileUpload';
-import exceptionMiddleware from './middlewares/exception';
+import exceptionMiddleware from './middlewares/exceptionMiddleware';
 
 import './database';
 

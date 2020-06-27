@@ -2,7 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import { getRepository } from 'typeorm';
 
-import User from '../models/Users';
+import User from '../models/User';
 
 import fileUploadConfig from '../config/fileUpload';
 import AppError from '../exceptions/AppError';
