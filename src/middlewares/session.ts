@@ -16,7 +16,7 @@ export default function session(
   const sessionHeader = request.headers.authorization;
 
   if (!sessionHeader) {
-    throw new AppError('Missing JWT token');
+    throw new AppError('Missing session token');
   }
 
   const [, token] = sessionHeader.split(' ');
