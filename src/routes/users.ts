@@ -1,8 +1,13 @@
 import { Router } from 'express';
+import multer from 'multer';
 
+import fileUploadConfig from '../config/fileUpload';
+
+import sessionMiddleware from '../middlewares/session';
 import CreateUserService from '../services/CreateUserService';
 
 const router = Router();
+const fileUpload = multer(fileUploadConfig);
 
 router.post('/', async (request, response) => {
   const { name, email, password } = request.body;
@@ -21,5 +26,14 @@ router.post('/', async (request, response) => {
     response.status(400).json({ error: error.message });
   }
 });
+
+router.patch(
+  '/avatar',
+  sessionMiddleware,
+  fileUpload.single('avatar'),
+  async (request, response) => {
+    return response.json({ ok: true });
+  },
+);
 
 export default router;
