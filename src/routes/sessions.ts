@@ -10,8 +10,8 @@ router.post('/', async (request, response) => {
   const createSessionService = new CreateSessionService();
 
   try {
-    const { user } = await createSessionService.execute({ email, password });
-    return response.status(200).json({ user });
+    const { user, token } = await createSessionService.execute({ email, password });
+    return response.status(200).json({ user, token });
   } catch (error) {
     return response.status(400).json({ error: error.message });
   }
