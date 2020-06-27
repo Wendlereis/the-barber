@@ -7,7 +7,11 @@ import Appointment from '../models/Appointments';
 import AppointmentsRepository from '../repositories/AppointmentsRepository';
 import CreateAppointmentService from '../services/CreateAppointmentService';
 
+import sessionMiddleware from '../middlewares/session';
+
 const router = Router();
+
+router.use(sessionMiddleware);
 
 router.get('/', async (_, response) => {
   const appointmentsRepository = getCustomRepository(AppointmentsRepository);
