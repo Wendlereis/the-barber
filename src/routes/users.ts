@@ -16,17 +16,13 @@ router.post('/', async (request, response) => {
 
   const createUserService = new CreateUserService();
 
-  try {
-    const { id, created_at, updated_at } = await createUserService.execute({
-      name,
-      email,
-      password,
-    });
+  const { id, created_at, updated_at } = await createUserService.execute({
+    name,
+    email,
+    password,
+  });
 
-    response.status(201).json({ id, name, email, created_at, updated_at });
-  } catch (error) {
-    response.status(400).json({ error: error.message });
-  }
+  response.status(201).json({ id, name, email, created_at, updated_at });
 });
 
 router.patch(
@@ -38,16 +34,12 @@ router.patch(
 
     const updateUserAvatarService = new UpdateUserAvatarService();
 
-    try {
-      const updatedUser = await updateUserAvatarService.execute({
-        userId: user.id,
-        avatarFileName: file.filename,
-      });
+    const updatedUser = await updateUserAvatarService.execute({
+      userId: user.id,
+      avatarFileName: file.filename,
+    });
 
-      return response.json(updatedUser);
-    } catch (error) {
-      response.status(400).json({ error: error.message });
-    }
+    return response.json(updatedUser);
   },
 );
 

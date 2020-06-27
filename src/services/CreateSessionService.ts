@@ -2,8 +2,9 @@ import { getRepository } from 'typeorm';
 import { compare } from 'bcryptjs';
 import { sign } from 'jsonwebtoken';
 
-import Users from '../models/Users';
 import User from '../models/Users';
+
+import AppError from '../exceptions/AppError';
 
 interface SessionRequest {
   email: string;
@@ -19,13 +20,13 @@ class CreateSessionService {
     const user = await userRepository.findOne({ where: { email } });
 
     if (!user) {
-      throw Error('Incorrect email or password');
+      throw new AppError('Incorrect email or password', 401);
     }
 
     const passwordMatched = compare(password, user.password);
 
     if (!passwordMatched) {
-      throw Error('Incorrect email or password');
+      throw new AppError('Incorrect email or password', 401);
     }
 
     const token = sign({}, process.env.JWT_TOKEN, {

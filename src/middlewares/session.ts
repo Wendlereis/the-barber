@@ -1,7 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
 import { verify } from 'jsonwebtoken';
-import { de } from 'date-fns/locale';
-import { decode } from 'querystring';
+import AppError from '../exceptions/AppError';
 
 interface Token {
   iat: number;
@@ -17,14 +16,14 @@ export default function session(
   const sessionHeader = request.headers.authorization;
 
   if (!sessionHeader) {
-    throw new Error('Missing JWT token');
+    throw new AppError('Missing JWT token');
   }
 
   const [, token] = sessionHeader.split(' ');
 
   try {
     const decoded = verify(token, process.env.JWT_TOKEN);
-    
+
     const { sub } = decoded as Token;
 
     request.user = {
@@ -33,6 +32,6 @@ export default function session(
 
     return next();
   } catch {
-    throw new Error('Invalid JWT token');
+    throw new AppError('Invalid JWT token', 401);
   }
 }

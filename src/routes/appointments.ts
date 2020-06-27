@@ -28,16 +28,12 @@ router.post('/', async (request, response) => {
 
   const parsedDate = parseISO(date);
 
-  try {
-    const appointment = await createAppointmentsService.execute({
-      provider_id,
-      date: parsedDate,
-    });
+  const appointment = await createAppointmentsService.execute({
+    provider_id,
+    date: parsedDate,
+  });
 
-    return response.status(201).json(appointment);
-  } catch (error) {
-    return response.status(400).json({ error: error.message });
-  }
+  return response.status(201).json(appointment);
 });
 
 export default router;
