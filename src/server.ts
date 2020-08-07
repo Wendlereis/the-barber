@@ -17,6 +17,6 @@ app.use('/files', express.static(fileUploadConfig.destination));
 app.use(routes);
 app.use(exceptionMiddleware);
 
-app.listen(3333, () =>
+app.listen(process.env.PORT || 3333, () =>
   console.log('app listen in port https://localhost:3333'),
 );
