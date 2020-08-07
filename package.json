@@ -12,10 +12,12 @@
     "multer": "^1.4.2",
     "pg": "^8.2.1",
     "reflect-metadata": "^0.1.13",
+    "ts-node": "^8.10.2",
     "typeorm": "^0.2.25"
   },
   "scripts": {
-    "build": "tsc && node ./dist/server.js",
+    "build": "tsc",
+    "start": "ts-node ./dist/server.js",
     "typeorm": "ts-node-dev ./node_modules/typeorm/cli.js",
     "start:server": "ts-node-dev --inspect --ignore node_modules src/server.ts"
   },
