@@ -17,7 +17,7 @@
   },
   "scripts": {
     "build": "tsc",
-    "start": "ts-node ./dist/server.js",
+    "start": "node ./dist/server.js",
     "typeorm": "ts-node-dev ./node_modules/typeorm/cli.js",
     "start:server": "ts-node-dev --inspect --ignore node_modules src/server.ts"
   },
