@@ -10,4 +10,6 @@ routes.use('/users', users);
 routes.use('/appointments', appointments);
 routes.use('/sessions', sessions);
 
+routes.use('/health', (_, response) => response.json({ ok: true }));
+
 export default routes;
