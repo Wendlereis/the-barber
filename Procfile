@@ -1,1 +1,1 @@
-release: yarn typeorm migration:run
+release: yarn typeorm:release migration:run
