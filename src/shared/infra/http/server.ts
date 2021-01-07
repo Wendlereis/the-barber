@@ -5,12 +5,12 @@ import 'express-async-errors';
 
 import cors from 'cors';
 
-import routes from './shared/routes';
+import routes from './routes';
 
-import fileUploadConfig from './config/fileUpload';
-import exceptionMiddleware from './shared/middlewares/exceptionMiddleware';
+import fileUploadConfig from '../../../config/fileUpload';
+import exceptionMiddleware from './middlewares/exceptionMiddleware';
 
-import './shared/database';
+import '../database';
 
 const app = express();
 

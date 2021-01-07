@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
 
-import AppError from '../exceptions/AppError';
+import AppError from '../../../exceptions/AppError';
 
 export default function exception(
   error: Error,
