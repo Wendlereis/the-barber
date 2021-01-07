@@ -2,9 +2,9 @@ import { getRepository } from 'typeorm';
 import { compare } from 'bcryptjs';
 import { sign } from 'jsonwebtoken';
 
-import User from '../models/User';
+import User from '../entities/User';
 
-import AppError from '../exceptions/AppError';
+import AppError from '../../../shared/exceptions/AppError';
 
 interface SessionRequest {
   email: string;
