@@ -4,7 +4,7 @@ import { sign } from 'jsonwebtoken';
 
 import User from '../infra/typeorm/User';
 
-import AppError from '../../../shared/exceptions/AppError';
+import AppError from '@shared/exceptions/AppError';
 
 interface SessionRequest {
   email: string;

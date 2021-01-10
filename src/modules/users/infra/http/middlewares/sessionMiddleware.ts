@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
 import { verify } from 'jsonwebtoken';
-import AppError from '../../../exceptions/AppError';
+import AppError from '@shared/exceptions/AppError';
 
 interface Token {
   iat: number;

@@ -4,8 +4,8 @@ import { getRepository } from 'typeorm';
 
 import User from '../infra/typeorm/User';
 
-import fileUploadConfig from '../../../config/fileUpload';
-import AppError from '../../../shared/exceptions/AppError';
+import fileUploadConfig from '@config/fileUpload';
+import AppError from '@shared/exceptions/AppError';
 
 interface Request {
   userId: string;

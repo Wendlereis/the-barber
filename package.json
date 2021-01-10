@@ -18,10 +18,10 @@
   },
   "scripts": {
     "build": "tsc",
-    "start": "node ./dist/server.js",
-    "typeorm": "ts-node-dev ./node_modules/typeorm/cli.js",
+    "start": "node ./dist/shared/infra/http/server.js",
+    "typeorm": "ts-node-dev -r tsconfig-paths/register ./node_modules/typeorm/cli.js",
     "typeorm:release": "ts-node ./node_modules/typeorm/cli.js",
-    "start:server": "ts-node-dev --inspect --ignore node_modules src/server.ts"
+    "start:server": "ts-node-dev -r tsconfig-paths/register --inspect --ignore node_modules src/shared/infra/http/server.ts"
   },
   "devDependencies": {
     "@types/bcryptjs": "^2.4.2",
@@ -40,6 +40,7 @@
     "eslint-plugin-prettier": "^3.1.4",
     "prettier": "^2.0.5",
     "ts-node-dev": "^1.0.0-pre.49",
+    "tsconfig-paths": "^3.9.0",
     "typescript": "^3.9.5"
   }
 }

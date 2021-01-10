@@ -3,7 +3,7 @@ import { getCustomRepository } from 'typeorm';
 
 import AppointmentsRepository from '../repositories/AppointmentsRepository';
 
-import AppError from '../../../shared/exceptions/AppError';
+import AppError from '@shared/exceptions/AppError';
 
 interface CreateAppointmentDTO {
   provider_id: string;

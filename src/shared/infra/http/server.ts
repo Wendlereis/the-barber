@@ -7,10 +7,10 @@ import cors from 'cors';
 
 import routes from './routes';
 
-import fileUploadConfig from '../../../config/fileUpload';
-import exceptionMiddleware from './middlewares/exceptionMiddleware';
+import fileUploadConfig from '@config/fileUpload';
+import exceptionMiddleware from '@shared/infra/http/middlewares/exceptionMiddleware';
 
-import '../database';
+import '@shared/infra/database';
 
 const app = express();
 
