@@ -1,6 +1,5 @@
 import { Router } from 'express';
 import { parseISO } from 'date-fns';
-import { getCustomRepository } from 'typeorm';
 
 import AppointmentsRepository from '@modules/appointments/infra/typeorm/repositories/AppointmentsRepository';
 import CreateAppointmentService from '@modules/appointments/services/CreateAppointmentService';
@@ -9,20 +8,22 @@ import sessionMiddleware from '@modules/users/infra/http/middlewares/sessionMidd
 
 const router = Router();
 
+const appointmentsRepository = new AppointmentsRepository()
+
 router.use(sessionMiddleware);
 
-router.get('/', async (_, response) => {
-  const appointmentsRepository = getCustomRepository(AppointmentsRepository);
+// router.get('/', async (_, response) => {
+//   const appointmentsRepository = getCustomRepository(AppointmentsRepository);
 
-  const appointments = await appointmentsRepository.find();
+//   const appointments = await appointmentsRepository.find();
 
-  return response.status(200).json(appointments);
-});
+//   return response.status(200).json(appointments);
+// });
 
 router.post('/', async (request, response) => {
   const { provider_id, date } = request.body;
 
-  const createAppointmentsService = new CreateAppointmentService();
+  const createAppointmentsService = new CreateAppointmentService(appointmentsRepository);
 
   const parsedDate = parseISO(date);
 
