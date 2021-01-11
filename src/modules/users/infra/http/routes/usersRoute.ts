@@ -8,13 +8,17 @@ import sessionMiddleware from '@modules/users/infra/http/middlewares/sessionMidd
 import CreateUserService from '@modules/users/services/CreateUserService';
 import UpdateUserAvatarService from '@modules/users/services/UpdateUserAvatarService';
 
+import UsersRepository from '@modules/users/infra/typeorm/repositories/UsersRepository';
+
 const router = Router();
 const fileUpload = multer(fileUploadConfig);
 
 router.post('/', async (request, response) => {
   const { name, email, password } = request.body;
 
-  const createUserService = new CreateUserService();
+  const usersRepository = new UsersRepository()
+
+  const createUserService = new CreateUserService(usersRepository);
 
   const { id, created_at, updated_at } = await createUserService.execute({
     name,
@@ -32,7 +36,9 @@ router.patch(
   async (request, response) => {
     const { user, file } = request;
 
-    const updateUserAvatarService = new UpdateUserAvatarService();
+    const usersRepository = new UsersRepository()
+
+    const updateUserAvatarService = new UpdateUserAvatarService(usersRepository);
 
     const updatedUser = await updateUserAvatarService.execute({
       userId: user.id,

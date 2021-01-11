@@ -8,8 +8,6 @@ import sessionMiddleware from '@modules/users/infra/http/middlewares/sessionMidd
 
 const router = Router();
 
-const appointmentsRepository = new AppointmentsRepository()
-
 router.use(sessionMiddleware);
 
 // router.get('/', async (_, response) => {
@@ -22,6 +20,8 @@ router.use(sessionMiddleware);
 
 router.post('/', async (request, response) => {
   const { provider_id, date } = request.body;
+
+  const appointmentsRepository = new AppointmentsRepository()
 
   const createAppointmentsService = new CreateAppointmentService(appointmentsRepository);
 
