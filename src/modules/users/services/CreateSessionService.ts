@@ -1,5 +1,6 @@
 import { compare } from 'bcryptjs';
 import { sign } from 'jsonwebtoken';
+import { injectable, inject } from 'tsyringe'
 
 import AppError from '@shared/exceptions/AppError';
 
@@ -10,12 +11,16 @@ interface ISessionRequest {
   password: string;
 }
 
+@injectable()
 class CreateSessionService {
-  constructor(private userRepository: IUsersRepository) {}
+  constructor(
+    @inject('UsersRepository')
+    private userRepository: IUsersRepository
+  ) {}
 
   public async execute(sessionRequest: ISessionRequest) {
     const { email, password } = sessionRequest;
-    
+
     const user = await this.userRepository.findByEmail(email);
 
     if (!user) {

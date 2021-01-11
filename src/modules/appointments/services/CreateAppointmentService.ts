@@ -1,5 +1,5 @@
 import { startOfHour } from 'date-fns';
-
+import { inject, injectable } from 'tsyringe'
 import IAppointnebtsRepository from '../repositories/IAppointmentsRepository';
 
 import AppError from '@shared/exceptions/AppError';
@@ -8,9 +8,12 @@ interface ICreateAppointmentDTO {
   provider_id: string;
   date: Date;
 }
-
+@injectable()
 class CreateAppointmentService {
-  constructor(private appointmentsRepository: IAppointnebtsRepository) {}
+  constructor(
+    @inject('AppointmentsRepository')
+    private appointmentsRepository: IAppointnebtsRepository
+  ) {}
 
   public async execute({ provider_id, date }: ICreateAppointmentDTO) {
     const appointmentDate = startOfHour(date);

@@ -11,6 +11,7 @@ import fileUploadConfig from '@config/fileUpload';
 import exceptionMiddleware from '@shared/infra/http/middlewares/exceptionMiddleware';
 
 import '@shared/infra/database';
+import '@shared/container';
 
 const app = express();
 
